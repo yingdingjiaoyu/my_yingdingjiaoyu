@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>志愿填报</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="{% static 'yingding/jssdk/sdk.css' %}" />
+    <link rel="stylesheet" href="{% static 'yingding/jssdk/helper.css' %}" />
+    <link rel="stylesheet" href="{% static 'yingding/jssdk/iconfont.css' %}" />
+    <!-- 这是默认主题所需的，如果是其他主题则不需要 -->
+    <!-- 从 1.1.0 开始 sdk.css 将不支持 IE 11，如果要支持 IE11 请引用这个 css，并把前面那个删了 -->
+    <!-- <link rel="stylesheet" href="sdk-ie11.css" /> -->
+    <!-- 不过 amis 开发团队几乎没测试过 IE 11 下的效果，所以可能有细节功能用不了，如果发现请报 issue -->
+    <style>
+      html,
+      body,
+      .app-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="app-wrapper"></div>
+    <script src="{% static 'yingding/jssdk/sdk.js' %}"></script>
+    <script type="text/javascript">
+      (function () {
+        let amis = amisRequire('amis/embed');
+        // 通过替换下面这个配置来生成不同页面
+        let amisJSON = {
+          'type': 'page',
+          'body':[
+              {
+                "type": "form",
+                "title":"欢迎使用赢鼎教育数据查询系统！历年录取线为该院校专业组当年投档最低分。",
+                "actionType":"reload",
+                "target":"my_crud",
+                // "debug":true,
+                "body": [
+                  {
+                    "type": "combo",
+                    "name": "student_informations",
+                    "label": "学生信息",
+                    "multiLine": true,
+                    "items": [
+                      {
+                        "type": "group",
+                        "mode": "horizontal",
+                        "body": [
+                          {
+                            "type": "input-number",
+                            "name": "grade",
+                            "required": true,
+                            "label": "高考总分"
+                          },
+                          {
+                            "type": "input-number",
+                            "name": "ranking",
+                            "label": "全省位次"
+                          },
+                          {
+                            "type": "input-number",
+                            "name": "2019_parity_score",
+                            "label": "2019同位分"
+                          },
+                          {
+                            "type": "input-number",
+                            "name": "2020_parity_score",
+                            "label": "2020同位分"
+                          },
+                          {
+                            "type": "input-number",
+                            "name": "2021_parity_score",
+                            "label": "2021同位分"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "group",
+                        "mode": "normal",
+                        "body":[
+                          {
+                            "name": "preferred_subject",
+                            "type": "radios",
+                            "label": "首选科目",
+                            "required": true,
+                            "options": [
+                              {
+                                "label": "普通类历史",
+                                "value": "历史"
+                              },
+                              {
+                                "label": "普通类物理",
+                                "value": "物理"
+                              },
+                              {
+                                "label": "美术类历史",
+                                "value": "美术类历史"
+                              },
+                              {
+                                "label": "美术类物理",
+                                "value": "美术类物理"
+                              }
+                            ]
+                          },
+                          {
+                            "name": "recleaning_subject",
+                            "type": "checkboxes",
+                            "label": "再选科目(请仅选其中两项)",
+                            "required": true,
+                            "options": [
+                              {
+                                "label": "化学",
+                                "value": "化学"
+                              },
+                              {
+                                "label": "生物",
+                                "value": "生物"
+                              },
+                              {
+                                "label": "地理",
+                                "value": "地理"
+                              },
+                              {
+                                "label": "政治",
+                                "value": "政治"
+                              },
+                            ]
+                          },
+                        ]
+                      },
+                      
+                      {
+                        "name": "intention_area",
+                        "type": "checkboxes",
+                        "label": "意向地区",
+                        "required": true,
+                        "columnsCount": 11,
+                        "options": [
+                          {"label": "江苏","value": "江苏"},
+                          {"label": "上海","value": "上海"},
+                          { "label": "浙江","value": "浙江"},
+                          {"label": "北京","value": "北京"},
+                          {"label": "天津","value": "天津"},
+                          {"label": "重庆","value": "重庆"},
+                          {"label": "安徽","value": "安徽"},
+                          {"label": "山东","value": "山东"},
+                          {"label": "河南","value": "河南"},
+                          {"label": "河北","value": "河北"},
+                          {"label": "湖南","value": "湖南"},
+                          {"label": "湖北","value": "湖北"},
+                          {"label": "福建","value": "福建"},
+                          {"label": "江西","value": "江西"},
+                          {"label": "广东","value": "广东"},
+                          {"label": "广西","value": "广西"},
+                          {"label": "海南","value": "海南"},
+                          {"label": "四川","value": "四川"},
+                          {"label": "贵州","value": "贵州"},
+                          {"label": "云南","value": "云南"},
+                          {"label": "西藏","value": "西藏"},
+                          {"label": "新疆","value": "新疆"},
+                          {"label": "陕西","value": "陕西"},
+                          {"label": "甘肃","value": "甘肃"},
+                          {"label": "山西","value": "山西"},
+                          {"label": "宁夏","value": "宁夏"},
+                          {"label": "青海","value": "青海"},
+                          {"label": "内蒙","value": "内蒙"},
+                          {"label": "辽宁","value": "辽宁"},
+                          {"label": "吉林","value": "吉林"},
+                          {"label": "黑龙江","value": "黑龙江"},
+                        ]
+                      },
+                    ]
+                  },
+                ]
+              },
+              {
+                "type": "crud",
+                "name":"my_crud",
+                "api": {
+                  "method":"post",
+                  "url":"api/admissions/filter",
+                  "headers":{
+                    "X-CSRFToken":"{{ csrf_token }}"
+                  }
+                },
+                "syncLocation": false,
+                "resizable":true,
+                "affixHeader": false,
+                // "rowClassNameExpr": "<%= data.id % 2 ? 'bg-light' : '' %>",
+                "columns": [
+                  {% for field in admissions_data_fields %}
+                  {% if field.name == "major_group_name" %}
+                  {
+                    "name":"{{ field.name }}",
+                    "label": "{{ field.label }}",
+                    "width":300,
+                  },
+                  {% else %}
+                  {
+                    "name":"{{ field.name }}",
+                    "label": "{{ field.label }}",
+                    "align":"center"
+                  },
+                  {% endif %}
+                  {% endfor %}
+                ]
+              }
+            ]
+          };
+        let amisScoped = amis.embed('#root', amisJSON);
+      })();
+    </script>
+  </body>
+</html>
